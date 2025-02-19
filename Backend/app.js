@@ -11,6 +11,7 @@ const google = require("./Utils/auth");
 const authRoutes = require("./Routes/authRoutes");
 const imageRouter = require("./Routes/pictureUplaod");
 const LocalStrategy = require("./Utils/local-auth");
+const MongoStore = require("connect-mongo");
 
 mongoose
     .connect(process.env.DB_URL)
@@ -22,6 +23,12 @@ app.use(express.json({ limit: "10mb" }));
 
 app.use(
     session({
+         store: MongoStore.create({
+      mongoUrl: "mongodb://localhost:27017/sessionDB",
+      ttl:7000 * 60 * 60 * 24, // 1-hour session expiry
+      autoRemove: "interval",
+      autoRemoveInterval: 10, // Cleanup every 10 minutes
+    }),
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
@@ -55,6 +62,9 @@ app.use("/api/auth", authRoutes);
 // Use image routes
 app.use("/api/images", imageRouter);
 
+app.get('/' , (req, res)=>{
+    res.send("Welcome");
+});
 app.use("*", (req, res) => {
     res.status(404).send("Page not found");
 });
