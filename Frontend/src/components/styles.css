@@ -1,0 +1,29 @@
+.my-masonry-grid {
+    display: flex;
+    margin-left: -16px; /* Adjust for padding */
+    padding: 15px;
+    width: auto;
+}
+
+.my-masonry-grid_column {
+    padding-left: 16px; /* Space between columns */
+    background-clip: padding-box;
+}
+
+.masonry-item {
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.blurred-image {
+    width: 100%;
+    display: block;
+    filter: blur(10px);
+    border-radius: 10px;
+    transition: filter 0.5s ease-in-out;
+}
+
+.masonry-item.loaded .blurred-image {
+    filter: blur(0);
+}
