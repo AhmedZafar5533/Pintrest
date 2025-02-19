@@ -39,7 +39,7 @@ export const useAppStore = create(
 
                     // Image upload request
                     const uploadPromise = fetch(
-                        "http://localhost:3001/api/images/upload/picture",
+                        "https://pixify-dtpr.onrender.com/api/images/upload/picture",
                         {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
@@ -70,7 +70,7 @@ export const useAppStore = create(
 
             fetchOnlineImages: async () => {
                 const API_KEY =
-                    "0Zsla65iKbwz9oaX1LfXi3DlSQZvw3aOF6YxGL1pNAKj2NxdJUO37fEX";
+                    process.env.IMAGE_API;
                 let categories = [
                     "nature",
                     "space",
