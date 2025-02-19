@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "./Pages/loginPage/page";
 
-import SignupPage from "./Pages/SignUpPage/SignUpPage";
+// import SignupPage from "./Pages/SignUpPage/SignUpPage";
 import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage";
 import { useAuthStore } from "../../Frontend/store/auth-store";
 import { useEffect } from "react";
