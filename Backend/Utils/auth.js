@@ -1,22 +1,21 @@
 const passport = require("passport");
 const User = require("../Modal/user");
 require("dotenv").config();
-
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 
 passport.use(
     new GoogleStrategy(
         {
-            clientID: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: "http://localhost:3001/api/auth/google/callback",
+            clientID: process.env.GOOGLE_CLIENT_ID, // ✅ Moved to .env
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET, // ✅ Moved to .env
+            callbackURL:
+                process.env.GOOGLE_CALLBACK_URL ||
+                "http://localhost:3001/api/auth/google/callback",
             passReqToCallback: true,
         },
         async function (request, accessToken, refreshToken, profile, done) {
             try {
-                const user = await User.findOne({
-                    email: profile.email,
-                });
+                const user = await User.findOne({ email: profile.email });
 
                 if (user) {
                     return done(null, profile);
@@ -29,21 +28,15 @@ passport.use(
                     });
 
                     await new_user.save();
-
                     return done(null, profile);
                 }
             } catch (error) {
-                console.log("error in passport auth js file", error);
+                console.log("Error in passport auth:", error);
                 return done(error, null);
             }
         }
     )
 );
 
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
