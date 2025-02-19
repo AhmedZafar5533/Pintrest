@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Upload, Check, X, Trash2, Camera, Eye } from "lucide-react";
 import { useAppStore } from "../../store/app-store";
 import { useAuthStore } from "../../store/auth-store";
-import DeleteModal from "./deleteModal";
+
 
 const UserProfile = () => {
     const defaultAvatar = "https://api.dicebear.com/7.x/thumbs/svg?seed=SarahParker";
@@ -10,7 +10,7 @@ const UserProfile = () => {
     const [tempAvatar, setTempAvatar] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const { userData, userPictures, } = useAuthStore()
-    const { setIsModalOpen, setDeleteModal, deleteModalOpen } = useAppStore()
+    const { setIsModalOpen, setDeleteModal} = useAppStore()
     console.log(userData)
 
 
@@ -138,7 +138,7 @@ const UserProfile = () => {
                     </div>
                 </div>
             </div>
-            {deleteModalOpen && <DeleteModal></DeleteModal>}
+
         </div>
     );
 };
