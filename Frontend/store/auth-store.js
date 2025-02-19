@@ -11,7 +11,7 @@ export const useAuthStore = create((set, get) => ({
     authenticateUser: async () => {
         try {
             const response = await fetch(
-                "http://localhost:3001/api/auth/authenticate",
+                "https://pixify-dtpr.onrender.com/api/auth/authenticate",
                 {
                     method: "GET",
                     headers: {
@@ -42,7 +42,7 @@ export const useAuthStore = create((set, get) => ({
         try {
             set({ islogging_siggningIn: true });
             const response = await fetch(
-                "http://localhost:3001/api/auth/normal/signup",
+                "https://pixify-dtpr.onrender.com/api/auth/normal/signup",
                 {
                     method: "POST",
                     headers: {
@@ -70,7 +70,7 @@ export const useAuthStore = create((set, get) => ({
         try {
             set({ islogging_siggningIn: true });
             const response = await fetch(
-                "http://localhost:3001/api/auth/normal/login",
+                "https://pixify-dtpr.onrender.com/api/auth/normal/login",
                 {
                     method: "POST",
                     headers: {
@@ -99,7 +99,7 @@ export const useAuthStore = create((set, get) => ({
         console.log("Sending login request");
         try {
             window.location.href =
-                "http://localhost:3001/api/auth/google/login";
+                "https://pixify-dtpr.onrender.com/api/auth/google/login";
         } catch (error) {
             toast.error("Failed to redirect to Google login");
             console.error("Error sending login request", error);
@@ -109,7 +109,7 @@ export const useAuthStore = create((set, get) => ({
         console.log("Sending logout request");
         try {
             const response = await fetch(
-                "http://localhost:3001/api/auth/logout",
+                "https://pixify-dtpr.onrender.com/api/auth/logout",
                 {
                     method: "POST",
                     credentials: "include",
